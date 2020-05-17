@@ -11,3 +11,10 @@ def index(request):
             {'title':'Mochila', 'price':'20', 'stock':False}
         ]
     })
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username') #POST is a dictionary
+        password = request.POST.get('password') #If key doesnt exists, get method returns a None value
+        print(username, password)
+    return render(request, 'users/login.html', {})
