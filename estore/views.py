@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect
+
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 
@@ -21,8 +22,8 @@ def login_view(request):
         user = authenticate(username=username, password=password) #returns None if user doesnt exists
         if user:
             login(request, user)
-            print('succesfull login')
+            return redirect(index)
         else:
             print('user doestn exists')
 
-    return render(request, 'users/login.html', {})
+    return render(request, 'users/login.html', {'title':'Ecommerce Site'})
