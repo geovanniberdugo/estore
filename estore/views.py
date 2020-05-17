@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth import logout
 
 def index(request):
     return render(request, 'index.html', {
@@ -29,3 +30,8 @@ def login_view(request):
             messages.error(request, 'Invalid user or password')
 
     return render(request, 'users/login.html', {'title':'Ecommerce Site'})
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Successful Exit')
+    return redirect('login')
