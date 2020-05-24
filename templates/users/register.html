@@ -11,30 +11,18 @@
         <div class="row mt-5">
             <div class="col">
                 <h2>Register Form</h2>
-                <form action="post">
+                <form method="post">
                     {% csrf_token %}
-
-                    <!--
-                    <div class="form-group">
-                        {{ form.username.label_tag }}
-                        {{ form.username }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.email.label_tag }}
-                        {{ form.email }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.password.label_tag }}
-                        {{ form.password }}
-                    </div>
-                    -->
 
                     {% for field in form %}
                     <div class="form-group">
                         {{ field.label_tag }}
                         {{ field }}
+
+                        {% if field.errors %}
+                            {{ field.errors }}
+                        {% endif %}
+
                     </div>
                     {% endfor %}
 
