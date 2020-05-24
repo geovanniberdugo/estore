@@ -44,3 +44,11 @@ class RegisterForm(forms.Form):
         cleaned_data = super().clean()  #Get method clean from parent class Form
         if cleaned_data.get('password2') != cleaned_data.get('password'): #Note that password2 depends of password
             self.add_error('password2', 'Password doesnt match') #Adding error to field password2
+    
+    def save(self):
+        #create_user(username, email, password) according documentation
+        return User.objects.create_user(
+                                        self.cleaned_data.get('username'), 
+                                        self.cleaned_data.get('email'), 
+                                        self.cleaned_data.get('password')
+                                    )

@@ -42,11 +42,8 @@ def logout_view(request):
 def register(request):
     form = RegisterForm(request.POST or None) #If method is POST then form is initialized 
 
-    if request.method == 'POST' and form.is_valid():
-        username = form.cleaned_data.get('username') #Dic
-        password = form.cleaned_data.get('password')
-        email = form.cleaned_data.get('email')
-        user = User.objects.create_user(username, email, password) #create_user encrypts password
+    if request.method == 'POST' and form.is_valid(): #is_valid() call all clean_field and clean methods to validate field
+        user = form.save() #In form.save() method create_user encrypts password
         if user:
             login(request, user)
             messages.success(request, 'Usuario creado exitosamente')
