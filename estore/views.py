@@ -39,5 +39,12 @@ def logout_view(request):
     return redirect('login')
 
 def register(request):
-    form = RegisterForm()
+    form = RegisterForm(request.POST or None) #If method is POST then form is initialized 
+
+    if request.method == 'POST' and form.is_valid():
+        username = form.cleaned_data.get('username') #Dic
+        password = form.cleaned_data.get('password')
+        email = form.cleaned_data.get('email')
+
+
     return render(request, 'users/register.html', {'form':form})
