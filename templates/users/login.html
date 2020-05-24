@@ -1,46 +1,23 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="mt-3 alert {% if message.tags == 'success' %} alert-success {% else %} alert-danger {% endif %}">
-                    <button type="button" class="close" data-dismiss="alert">x</button>
-                    {{ message }}
-                </div>  
-            {% endfor %}
-        {% endif %}
+{% extends 'base.html' %}
 
-        <div class="row mt-5">
-            <div class="col">
-                <h2>Login</h2>
-                <!--Login Form-->
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username">
-                    </div>
+{% block content %}
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control">
-                    </div>
-                    <button type="submit" name="button" class="btn btn-primary btn-block">Login</button>
-                </form>
+    <div class="col">
+        <h2>Login</h2>
+        <!--Login Form-->
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username">
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <button type="submit" name="button" class="btn btn-primary btn-block">Login</button>
+        </form>
     </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="{% static 'js/main.js' %}"></script>
-</html>
+
+{% endblock %}
