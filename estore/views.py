@@ -7,23 +7,22 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
+from products.models import Product
+
 from .forms import RegisterForm
 
 def index(request):
+    products = Product.objects.all().order_by('-id')
     return render(request, 'index.html', {
         'message': 'Listado de Productos',
         'title': 'Productos',
-        'products': [
-            {'title':'Playera', 'price':'5', 'stock':True},
-            {'title':'Camisa', 'price':'50', 'stock':True},
-            {'title':'Mochila', 'price':'20', 'stock':False}
-        ]
+        'products': products
     })
 
 def login_view(request):
     if request.user.is_authenticated:
         return redirect(index)
-        
+
     if request.method == 'POST':
         username = request.POST.get('username') #POST is a dictionary
         password = request.POST.get('password') #If key doesnt exists, get method returns a None value
