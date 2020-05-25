@@ -17,5 +17,6 @@ class ProductListView(ListView):
 
 
 class ProductDetailView(DetailView): #Search by id -> pk. This class takes the id from url route
+    #This view returns an object called 'product' that we can use in product.html template
     template_name = 'products/product.html'
     model = Product
