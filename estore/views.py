@@ -21,6 +21,9 @@ def index(request):
     })
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect(index)
+        
     if request.method == 'POST':
         username = request.POST.get('username') #POST is a dictionary
         password = request.POST.get('password') #If key doesnt exists, get method returns a None value
@@ -40,6 +43,9 @@ def logout_view(request):
     return redirect('login')
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect(index)
+
     form = RegisterForm(request.POST or None) #If method is POST then form is initialized 
 
     if request.method == 'POST' and form.is_valid(): #is_valid() call all clean_field and clean methods to validate field
