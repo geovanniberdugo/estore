@@ -8,20 +8,9 @@
 
         <div class="row">
 
-            {% for product in product_list %}
+            {% for object in product_list %}
             <div class="col-3 mt-5">
-                <!--Product-->
-                <div class="card h-100">
-                    {%if product.image %}
-                        <img src="{{ product.image.url }}" alt="Product Image" height="300">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.title }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                        <a href="#" class="btn btn-primary">More</a>
-                    </div>
-                </div>
-
+                {% include 'products/snippets/product.html' with product=object %}
             </div>
             {% endfor %}
 
