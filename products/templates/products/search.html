@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col">
+    <p>Product Search</p>
+    {% include 'products/snippets/search.html' with query=query %} <!--query comes from context in CBV-->
+    <hr>
+    <p>Results for: {{ query }} ({{counter}})</p>
+    {% include 'products/snippets/list.html' %}
+
+</div>
+{% endblock %}
